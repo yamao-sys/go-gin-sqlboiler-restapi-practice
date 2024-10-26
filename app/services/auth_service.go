@@ -60,6 +60,9 @@ func (as *authService) SignUp(ctx context.Context, requestParams dto.SignUpReque
 func (as *authService) SignIn(ctx context.Context, requestParams dto.SignInRequest) *dto.SignInResponse {
 	// NOTE: emailからユーザの取得
 	user, err := models.Users(qm.Where("email = ?", requestParams.Email)).One(ctx, as.db)
+	if err != nil {
+		return &dto.SignInResponse{TokenString: "", NotFoundMessage: "メールアドレスまたはパスワードに該当するユーザが存在しません。", Error: nil}
+	}
 
 	// NOTE: パスワードの照合
 	if err := as.compareHashPassword(user.Password, requestParams.Password); err != nil {
