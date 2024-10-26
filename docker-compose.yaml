@@ -12,6 +12,11 @@ services:
       - db
     tty: true # コンテナの永続化
     environment:
+      - MYSQL_DBNAME=${MYSQL_DBNAME}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASS=${MYSQL_PASS}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
       - TZ=Asia/Tokyo
 
   db:
@@ -20,9 +25,9 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: go_gin_sqlboiler_restapi_practice
-      TZ: "Asia/Tokyo"
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASS}
+      - MYSQL_DATABASE=${MYSQL_DBNAME}
+      - TZ=Asia/Tokyo
     volumes:
       - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./mysql:/var/lib/mysql
