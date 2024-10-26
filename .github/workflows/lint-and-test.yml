@@ -74,7 +74,7 @@ jobs:
           sudo cp .env.test /app/.env.test
 
       - name: Setup test database
-        working-directory: ./app
+        working-directory: ./app/db
         run: godotenv -f /app/.env.test sql-migrate up -env="mysql"
 
       - name: test
