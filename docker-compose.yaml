@@ -6,6 +6,8 @@ services:
       context: ./app
     volumes:
       - ./app:/app
+      - ./.env:/app/.env
+      - ./.env.test.local:/app/.env.test.local
     ports:
       - 8080:8080
     depends_on:
@@ -20,9 +22,9 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: go_gin_sqlboiler_restapi_practice
-      TZ: "Asia/Tokyo"
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASS}
+      - MYSQL_DATABASE=${MYSQL_DBNAME}
+      - TZ=Asia/Tokyo
     volumes:
       - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./mysql:/var/lib/mysql
