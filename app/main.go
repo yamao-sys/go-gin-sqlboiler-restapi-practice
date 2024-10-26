@@ -16,13 +16,17 @@ func main() {
 
 	// service
 	authService := services.NewAuthService(dbCon)
+	todoService := services.NewTodoService(dbCon)
 
 	// controller
 	authController := controllers.NewAuthController(authService)
+	todoController := controllers.NewTodoController(todoService, authService)
 	authRouter := routers.NewAuthRouter(authController)
+	todoRouter := routers.NewTodoRouter(todoController)
 
 	// router
 	r := gin.Default()
 	authRouter.SetRouting(r)
+	todoRouter.SetRouting(r)
 	r.Run(":" + os.Getenv("SERVER_PORT"))
 }
