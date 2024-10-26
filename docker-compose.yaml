@@ -12,6 +12,7 @@ services:
       - db
     tty: true # コンテナの永続化
     environment:
+      - SERVER_PORT=${SERVER_PORT}
       - MYSQL_DBNAME=${MYSQL_DBNAME}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASS=${MYSQL_PASS}
