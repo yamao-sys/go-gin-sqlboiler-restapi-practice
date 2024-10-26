@@ -3,6 +3,9 @@ Go Gin × SQLBoilerによるRESTAPIの練習
 
 - sqlboilerとgo-txdbの依存ライブラリの競合が...
 
+- godotenv
+	- https://zenn.dev/yukihaga/scraps/19b101e0faf857
+
 ## コマンド類
 - Webサーバ起動
 ```
